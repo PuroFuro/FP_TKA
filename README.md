@@ -17,23 +17,25 @@ Pada final project TKA ini, kita diminta untuk merancang sebuah arsitektur cloud
 
 **Rancangan Arsitektur**
 
-img
+![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/rancangan.png)
 
 **Spesifikasi Worker 1 & 2**
 
-img
+![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/worker1.png)
+
+![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/worker2.png)
 
 **Spesifikasi Back-End**
 
-img
+![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/backend.png)
 
 **Spesifikasi Database (MongoDB)**
 
-img
+![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/mongo.png)
 
 **Tabel Spesifikasi**
 
-img
+![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/Spesifikasi.png)
 
 ## III. Langkah-langkah Implementasi & Konfigurasi
 
@@ -53,7 +55,9 @@ img
 - Gunakan command `systemctl restart apache2` untuk restart service apache2
 - Akses web menggunakan IP yang ada di masing-masing droplet atau IP loadbalancer
 
-img
+![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/ssh_worker2.png)
+
+![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/isi_index_nano.png)
 
 *Untuk satu droplet (Back-End):*
 - `sudo apt-get install python3` (ini kalau belum ada python3)
@@ -67,12 +71,12 @@ img
 - Konfigurasikan sentiment_analysis.py
 - Nyalakan menggunakan command `gunicorn -b 0.0.0.0:5000 sentiment_analysis:app --daemon` agar dapat berjalan meskipun terminal dimatikan
 
-img
+![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/isi_backend.png)
+
+![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/isi_sentiment_nano.png)
 
 *Untuk locustfile:*
 - Deploy locustfile menggunakan command `locust -f locustfile.py --host http://(IP backend):5000`
-
-img
 
 ## IV. Hasil Pengujian Endpoint setiap API
 
@@ -100,15 +104,15 @@ img
 
 - 100 User 25 Spawnrate 60 Second
 
-img
+![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/25user.png)
 
 - 100 User 50 Spawnrate 60 Second
 
-img
+![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/50user.png)
 
 - 100 User 100 Spawnrate 60 Second
 
-img
+![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/100user.png)
 
 ## VI. Kesimpulan & Saran
 
