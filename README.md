@@ -1,7 +1,7 @@
 
 # Laporan Final Project TKA
 
-## Kelompok 1 Kelas B
+## Kelompok C8 Kelas B
 
 ## I. Introduction
 
