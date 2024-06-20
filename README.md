@@ -3,6 +3,17 @@
 
 ## Kelompok C8 Kelas B
 
+**Anggota**
+- Nathan Kho Pancras 5027231002
+  
+- Amoes Noland 5027231028
+  
+- Fico Simhanandi 5027231030
+
+- Johanes Edward Nathanael 5027231067
+
+- Muhammad Kenas Galeno Putra 5027231069
+
 ## I. Introduction
 
 Anda adalah seorang lulusan Teknologi Informasi, sebagai ahli IT, salah satu kemampuan yang harus dimiliki adalah Keampuan merancang, membangun, mengelola aplikasi berbasis komputer menggunakan layanan awan untuk memenuhi kebutuhan organisasi.
@@ -80,25 +91,13 @@ Pada final project TKA ini, kita diminta untuk merancang sebuah arsitektur cloud
 
 ## IV. Hasil Pengujian Endpoint setiap API
 
-- Get all orders
+- Get /analyze (Menggunakan Web)
 
-img
+![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/analyze.png)
 
-- Get a Specific Order by ID
+- Get /history (Menggunakan Postman)
 
-img
-
-- Create a New Order
-
-img
-
-- Update an Order by ID
-
-img
-
-- Delete an Order by ID
-
-img 
+![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/history.png)
 
 ## V. Hasil Pengujian dan Analisis Loadtesting Menggunakan Locust
 
