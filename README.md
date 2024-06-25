@@ -28,49 +28,49 @@ Pada final project TKA ini, kita diminta untuk merancang sebuah arsitektur cloud
 
 **Rancangan Arsitektur**
 
-![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/rancangan.png)
+![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/RA.png)
 
-**Spesifikasi Worker 1 & 2**
+**Spesifikasi Worker 1 (Application)**
 
-![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/worker1.png)
+![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/frontendDO.png)
 
-![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/worker2.png)
+**Spesifikasi Worker 2 & 3 (Back-End)**
 
-**Spesifikasi Back-End**
+![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/backendDO1.png)
 
-![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/backend.png)
+![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/backendDO2.png)
 
 **Spesifikasi Database (MongoDB)**
 
-![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/mongo.png)
+![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/mongodb.png)
 
 **Tabel Spesifikasi**
 
-![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/Spesifikasi.png)
+![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/R_Arsi.png)
 
 ## III. Langkah-langkah Implementasi & Konfigurasi
 
 **Langkah-langkah awal**
 
-- Membuat 3 *Droplets*, 2 untuk application dan 1 untuk Back-end di Digital Ocean
+- Membuat 3 *Droplets*, 1 untuk application dan 2 untuk Back-end di Digital Ocean
 
-- Membuat Load-Balancer dan disambungkan ke 2 application Droplets
+- Membuat Load-Balancer dan disambungkan ke 2 backend Droplets (Pastikan saat membuat loadbalancer, health-check diganti menjadi TCP)
 
 - Terakhir, membuat Database MongoDB 
 
 **Konfigurasi**
 
-*Untuk dua droplet (Application):*
+*Untuk satu droplet (Application):*
 - `sudo apt-get install apache2`
 - Konfigurasikan index.html beserta styles.css
 - Gunakan command `systemctl restart apache2` untuk restart service apache2
 - Akses web menggunakan IP yang ada di masing-masing droplet atau IP loadbalancer
 
-![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/ssh_worker2.png)
+![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/frontend_1.png)
 
-![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/isi_index_nano.png)
+![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/frontend_2.png)
 
-*Untuk satu droplet (Back-End):*
+*Untuk dua droplet (Back-End):*
 - `sudo apt-get install python3` (ini kalau belum ada python3)
 - install semua dependencies:
     - `sudo apt-get install python3-pip` (ini kalau belum ada pip)
@@ -80,14 +80,14 @@ Pada final project TKA ini, kita diminta untuk merancang sebuah arsitektur cloud
     - `pip install pymongo`
     - `pip install gunicorn`
 - Konfigurasikan sentiment_analysis.py
-- Nyalakan menggunakan command `gunicorn -b 0.0.0.0:5000 sentiment_analysis:app --daemon` agar dapat berjalan meskipun terminal dimatikan
+- Nyalakan menggunakan command `gunicorn -b 0.0.0.0:80 sentiment_analysis:app --daemon` agar dapat berjalan meskipun terminal dimatikan
 
-![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/isi_backend.png)
+![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/backend_1.png)
 
 ![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/isi_sentiment_nano.png)
 
 *Untuk locustfile:*
-- Deploy locustfile menggunakan command `locust -f locustfile.py --host http://(IP backend):5000`
+- Deploy locustfile menggunakan command `locust -f locustfile.py --host http://(IP backend)`
 
 ## IV. Hasil Pengujian Endpoint setiap API
 
@@ -101,18 +101,53 @@ Pada final project TKA ini, kita diminta untuk merancang sebuah arsitektur cloud
 
 ## V. Hasil Pengujian dan Analisis Loadtesting Menggunakan Locust
 
-- 100 User 25 Spawnrate 60 Second
+**Important!**
 
-![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/25user.png)
+Sebelum melakukan tes locust, selalu hapus isi dari database terlebih dahulu, disini menggunakan MongoDB Compass
 
-- 100 User 50 Spawnrate 60 Second
+![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/mongocompass.png)
 
-![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/50user.png)
+**Max RPS**
+- Konfigurasi awal
 
-- 100 User 100 Spawnrate 60 Second
+![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/RPS_tes.png)
 
-![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/100user.png)
+- Hasil Max RPS
+
+![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/RPS_res.png)
+
+Dilihat dari hasil diatas, maka Max RPS yang didapatkan berkisaran di sekitar **271** RPS
+
+**Peak User Concurrency**
+
+- 50 Spawnrate 60 Second
+
+![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/50UPS.png)
+
+Mulai mengalami failure di 3950 User sehingga Peak Concurrency berada di sekitar **3950**
+
+- 100 Spawnrate 60 Second
+
+![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/100UPS.png)
+
+Mulai mengalami failure di 3500 User sehingga Peak Concurrency berada di sekitar **3500**
+
+- 200 Spawnrate 60 Second
+
+![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/200UPS.png)
+
+Mulai mengalami failure di 6400 User sehingga Peak Concurrency berada di sekitar **6400**
+
+- 500 Spawnrate 60 Second
+
+![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/500UPS.png)
+
+Mulai mengalami failure di 8500 User sehingga Peak Concurrency berada di sekitar **8500**
 
 ## VI. Kesimpulan & Saran
 
 Setelah beberapa pengujian dan analisis, dapat disimpulkan bahwa Digital Ocean memberikan hasil yang memuaskan dengan harga yang relatif murah dibandingkan dengan Cloud Provider yang lain. Selebihnya, meskipun memilih service yang paling murah, website tetap dapat berjalan dengan lancar.
+
+## VII. Revisi
+
+Revisi yang dilakukan berupa mengganti pekerjaan worker, yakni dari 2 Application dan 1 Backend menjadi 2 Backend dan 1 Application. Hal ini terjadi dikarenakan saat dilakukan pengecekan, ditemukan bahwa bagian back-end memiliki workload yang lebih besar daripada frontend, sehinggan yang akan di-loadbalance merupakan backend. Hasil yang didapatkan jauh lebih bagus, seperti tidak adanya failure di Peak User Concurrency yang cukup besar (dapat dilihat di hasil pengujian).
