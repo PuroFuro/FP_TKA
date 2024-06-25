@@ -146,7 +146,7 @@ Mulai mengalami failure di 8500 User sehingga Peak Concurrency berada di sekitar
 
 ## VI. Kesimpulan & Saran
 
-Setelah beberapa pengujian dan analisis, dapat disimpulkan bahwa Digital Ocean memberikan hasil yang memuaskan dengan harga yang relatif murah dibandingkan dengan Cloud Provider yang lain. Selebihnya, meskipun memilih service yang paling murah, website tetap dapat berjalan dengan lancar.
+Setelah beberapa pengujian dan analisis, dapat disimpulkan bahwa Digital Ocean memberikan hasil yang memuaskan dengan harga yang relatif murah dibandingkan dengan Cloud Provider yang lain. Selebihnya, meskipun memilih service yang paling murah, website tetap dapat berjalan dengan lancar. Lalu lakukan pengecekan terhadap resource yang dipakai saat menjalankan locust, karena dengan tahunya kita bagian mana yang membutuhkan lebih banyak resource (backend/frontend) kita dapat mengkonfigurasikan sedemikian rupa agar lebih optimal.
 
 ## VII. Revisi
 
