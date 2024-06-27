@@ -151,3 +151,7 @@ Setelah beberapa pengujian dan analisis, dapat disimpulkan bahwa Digital Ocean m
 ## VII. Revisi
 
 Revisi yang dilakukan berupa mengganti pekerjaan worker, yakni dari 2 Application dan 1 Backend menjadi 2 Backend dan 1 Application. Hal ini terjadi dikarenakan saat dilakukan pengecekan, ditemukan bahwa bagian back-end memiliki workload yang lebih besar daripada frontend, sehinggan yang akan di-loadbalance merupakan backend. Hasil yang didapatkan jauh lebih bagus, seperti tidak adanya failure di Peak User Concurrency yang cukup besar (dapat dilihat di hasil pengujian).
+
+## Link Video Revisi
+
+[Video Revisi](https://youtu.be/JcI1XfjixNU)
