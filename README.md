@@ -116,7 +116,7 @@ Sebelum melakukan tes locust, selalu hapus isi dari database terlebih dahulu, di
 
 ![github-small](https://github.com/PuroFuro/FP_TKA/blob/main/img/RPS_res.png)
 
-Dilihat dari hasil diatas, maka Max RPS yang didapatkan berkisaran di sekitar **271** RPS
+Dilihat dari hasil diatas, maka Rata-rata yang didapatkan berkisaran di 271/200 x 30 = **40.65**
 
 **Peak User Concurrency**
 
